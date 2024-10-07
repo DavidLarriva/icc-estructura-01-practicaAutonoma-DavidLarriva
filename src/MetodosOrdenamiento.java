@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class MetodosOrdenamiento {
 
     // Método de burbuja tradicional con errores
-    // Error encontrado:
+    // Error encontrado: No devuelve el arreglo, arregle el codigo para que devuelva el arreglo ordenado.
     public int[] burbujaTradicional(int[] arregloOriginal) {
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
 
@@ -18,11 +18,12 @@ public class MetodosOrdenamiento {
                 }
             }
         }
-        return new int[] {};
+        return arreglo; //Linea de codigo cambiada, ahora devuelve el arreglo.
     }
 
     // Método de burbuja tradicional con errores
-    // Error encontrado:
+    // Error encontrado: No tiene errores este metodo, todo esta bien, el metodo ordena de mayor a menor, voy a cambiarlo
+    //para que sea de menor a mayor.
 
     public int[] burbujaTradicionalSegundo(int[] arregloOriginal) {
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
@@ -30,7 +31,7 @@ public class MetodosOrdenamiento {
         int n = arreglo.length;
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                if (arreglo[i] < arreglo[j]) {
+                if (arreglo[i] > arreglo[j]) {
                     // Intercambio de elementos
                     // Estas 3 lineas NO DEBEN ser modificadas
                     int temp = arreglo[i];
@@ -45,19 +46,19 @@ public class MetodosOrdenamiento {
     }
 
     // Método de burbuja tradicional con errores
-    // Error encontrado:
+    // Error encontrado: Error en la logica del intercambio de elementos, cambie diferentes variables.
     public int[] burbujaTradicionalTercero(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
 
         int n = arreglo.length;
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n ; i++) {
             for (int j = 0; j < n; j++) {
-                if (arreglo[j] > arreglo[j + 1]) {
+                if (arreglo[i] < arreglo[j]) { //Cambio aqui tambien 
                     // Intercambio de elementos
-                    int temp = arreglo[j];
-                    arreglo[j] = arreglo[j + 1];
-                    arreglo[j + 1] = temp;
+                    int temp = arreglo[i]; //aqui deberia ir "i" esta mal el intercambio de las variables en la condicion.
+                    arreglo[i] = arreglo[j]; //Ya que es burbuja tradicional deberia cambiar arreglo[i] con arreglo[j]
+                    arreglo[j] = temp;
                 }
             }
         }
@@ -65,7 +66,7 @@ public class MetodosOrdenamiento {
     }
 
     // Método de selección con errores
-    // Error encontrado:
+    // Error encontrado: Falta el return arreglo
     public int[] seleccionPrimero(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
@@ -82,10 +83,12 @@ public class MetodosOrdenamiento {
             arreglo[i] = smallerNumber;
         }
 
+        return arreglo; //Falta el return arreglo.
+
     }
 
     // Método de selección con errores
-    // Error encontrado:
+    // Error encontrado:Condicion de la j mal ejecutada
     public int[] seleccionSegundo(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
@@ -93,7 +96,7 @@ public class MetodosOrdenamiento {
         for (int i = 0; i < arreglo.length; i++) {
             int indiceMinimo = i;
 
-            for (int j = i + 1; j < arreglo.length; j--) {
+            for (int j = i + 1; j < arreglo.length; j++) { // condicion de la j mal ejecutada
                 if (arreglo[j] < arreglo[indiceMinimo]) {
                     indiceMinimo = j;
                 }
@@ -107,29 +110,29 @@ public class MetodosOrdenamiento {
     }
 
     // Método de selección con errores
-    // Error encontrado:
+    // Error encontrado: condicion y intercambio incorrectos.
     public int[] seleccionTercero(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
 
-        for (int i = 0; i < arreglo.length - 1; i++) {
+        for (int i = 0; i < arreglo.length ; i++) {
             int indiceMinimo = i;
 
-            for (int j = i + 1; j < arreglo.length; j++) {
+            for (int j = i + 1; j < arreglo.length; j++) { //Condicion incorrecta
                 if (arreglo[j] < arreglo[indiceMinimo]) {
                     indiceMinimo = j;
                 }
             }
 
-            int smallerNumber = arreglo[i];
+            int smallerNumber = arreglo[indiceMinimo]; //Intercambio mal ejecutado
             arreglo[indiceMinimo] = arreglo[i];
-            arreglo[indiceMinimo] = smallerNumber;
+            arreglo[i] = smallerNumber;
         }
         return arreglo;
     }
 
-    // Método de inserción con errores
-    // Error encontrado:
+    // Método de inserción con errores 1
+    // Error encontrado: Cambio de condiciones y variables que estaban mal.
     public int[] insercionPrimero(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
@@ -137,7 +140,7 @@ public class MetodosOrdenamiento {
             int key = arreglo[j];
             int i = j - 1;
 
-            while (i > 0 && arreglo[i] < key) {
+            while (i >= 0 && arreglo[i] > key) { //Cambio en la condiciom de menor a mayor y i >=
                 arreglo[i + 1] = arreglo[i];
                 i--;
             }
@@ -146,19 +149,20 @@ public class MetodosOrdenamiento {
         return arreglo;
     }
 
-    // Método de inserción con errores
+    // Método de inserción con errores 2
     // Error encontrado:
     public int[] insercionSegundo(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
         for (int j = 1; j < arreglo.length; j++) {
-            int actual = arreglo[j];
+            int key = arreglo[j];
 
             int i = j - 1;
-            for (; j >= 0 && arreglo[j] > actual; j--) {
-                arreglo[j + 1] = arreglo[j];
+
+            for (; i >= 0 && arreglo[i] > key; i--) { //LA VARIABLE es key no actual, ademas en vez de j deberia ir i, bucle for
+                arreglo[i + 1] = arreglo[i]; //cambiar j por i 
             }
-            arreglo[i + 1] = actual;
+            arreglo[i + 1] = key;
         }
         return arreglo;
     }
@@ -168,17 +172,18 @@ public class MetodosOrdenamiento {
     public int[] insercionTercero(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
+
         for (int j = 1; j < arreglo.length; j++) {
             int key = arreglo[j];
-            int i = j;
+            int i = j - 1; //i=j-1
 
-            while (i > 0 && arreglo[i] < key) {
+            while (i >= 0 && arreglo[i] > key) { //cambiar de signo y agregar un igual
                 arreglo[i + 1] = arreglo[i];
-                i++;
+                i--; //i itera en --
             }
             arreglo[i + 1] = key;
         }
-        return new int[] { 15, 34, 1, 2, 5, 6, 7, 10 };
+        return arreglo; // Deberia retornar en arreglo
     }
 
 }
